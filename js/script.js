@@ -23,7 +23,8 @@
 		$(sectionId + ' img').hide();
 		$(sectionId + ' img').first().show();
 		
-		loadImage('#' + $(sectionId + ' img').first().attr('id'));
+		loadImage('#' + $(sectionId + ' img').eq(0).attr('id'));
+		loadImage('#' + $(sectionId + ' img').eq(1).attr('id'));
 
 		return false;
 	});
@@ -36,13 +37,15 @@
 			var targetId = '#' + $(this).attr('data-target');
 			var targetType = $(this).attr('data-target').split("-")[0];			
 			var targetNumber = $(this).attr('data-target').split("-")[1];
-			
-			console.log(sectionId);
-			console.log(targetId);			
 						
 			$(sectionId + ' img').hide();
 
-			loadImage(targetId);
+			if ($(this).attr('class') === 'prev') {
+				loadImage('#' + targetType + '-' + (parseInt(targetNumber)-1))
+			} else {
+				loadImage('#' + targetType + '-' + (parseInt(targetNumber)+1))				
+			}
+			
 			$(targetId).show();	
 			
 			$(sectionId + ' span').text(targetNumber);
