@@ -1,0 +1,85 @@
+@import 'colors';
+@import 'mixins';
+
+body {
+	font-family: Montserrat, "Helvetica Neue", sans-serif;
+}
+
+.head {
+  display: flex;                  /* establish flex container */
+  flex-direction: row;            /* default value; can be omitted */
+  flex-wrap: nowrap;              /* default value; can be omitted */
+  justify-content: space-between; /* switched from default (flex-start, see below) */
+	
+	vertical-align: middle;
+}
+
+.nav-gallery {
+  display: flex;                  /* establish flex container */
+  flex-direction: row;            /* default value; can be omitted */
+  flex-wrap: nowrap;              /* default value; can be omitted */
+  justify-content: space-between; /* switched from default (flex-start, see below) */
+	
+  font-size: 0.8em;
+  margin:0.5em 0;
+}
+
+.container {
+	margin: 0 2em;
+	padding: 1em;
+	background-color: @background-color;
+}
+
+.section {
+	width: 100%;
+	text-align: center;
+}
+
+.section > .head {
+	display: none;
+}
+
+a {
+	text-decoration: none;
+	color: @text-color;
+	
+	&:hover {
+		color: @hover-active-color;
+	}
+
+	&.active {
+		color: @hover-active-color;
+		font-weight: bold;
+	}
+}
+
+.nav {
+	padding-top: 1em;
+	
+	li {
+		display: inline;
+		margin-left: 1.5em;
+	}
+}
+
+
+img {
+	.animation(fade, 1.5s);
+	
+	&.portrait {
+		max-height: 70vh;
+		margin: 0 ;
+	}
+
+	&.landscape {
+		width: 100%;
+	}	
+}
+
+.fade-animation(.4, 1);
+
+.footer {
+	text-align: center;
+	margin-top: 5em;
+	font-size: 0.8em;
+}

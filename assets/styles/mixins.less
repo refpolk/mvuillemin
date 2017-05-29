@@ -1,0 +1,18 @@
+.animation(@animation-name, @animation-duration) {
+	-webkit-animation-name: @animation-name;
+	-webkit-animation-duration: @animation-duration;
+	animation-name: @animation-name;
+	animation-duration: @animation-duration;	
+}
+
+.fade-animation(@from, @to) {
+	@-webkit-keyframes fade {
+	  from {opacity: @from} 
+	  to {opacity: @to}
+	}
+
+	@keyframes fade {
+	  from {opacity: @from} 
+	  to {opacity: @to}
+	}
+}
