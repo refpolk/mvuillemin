@@ -6,7 +6,9 @@ var
   concat = require('gulp-concat'),
   uglify = require('gulp-uglify'),
   rename = require('gulp-rename'),
-	htmlclean = require('gulp-htmlclean');
+	htmlclean = require('gulp-htmlclean')
+	casperJs = require('gulp-casperjs');;
+
 
 gulp.task('styles', function () {
 	
@@ -26,6 +28,7 @@ gulp.task('styles', function () {
 		
 });
 
+
 gulp.task('scripts', function() {  
     
 	gulp.src('assets/scripts/*.js')
@@ -36,6 +39,7 @@ gulp.task('scripts', function() {
 	      suffix: '.min'
 		}))	
     .pipe(gulp.dest('dist'));
+		
 });
 
 gulp.task('html', function() {  
@@ -43,7 +47,17 @@ gulp.task('html', function() {
 	gulp.src('assets/html/*.html')
     .pipe(htmlclean())
     .pipe(gulp.dest('dist'));
+		
 });
+
+
+gulp.task('tests', function () {
+  
+	gulp.src('tests/*')
+    .pipe(casperJs());
+		
+});
+
 
 gulp.task('watch', function () {
 	
@@ -52,6 +66,10 @@ gulp.task('watch', function () {
 	gulp.watch('assets/scripts/*.js', ['scripts']);
 		
 	gulp.watch('assets/html/*.html', ['html']);
+	
 });
 
-gulp.task('default', ['styles', 'scripts', 'html', 'watch']);
+
+gulp.task('build', ['styles', 'scripts', 'html', 'tests']);
+
+gulp.task('default', ['build', 'watch']);
